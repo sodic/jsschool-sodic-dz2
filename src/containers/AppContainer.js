@@ -7,7 +7,7 @@ class AppContainer extends PureComponent {
     super();
 
     const resolution = 10;
-    
+
     this.state = {
       brush: util.randomColor(),
       resolution: resolution,
@@ -49,7 +49,7 @@ class AppContainer extends PureComponent {
 
   clearBoard = () => {
     this.setState({
-      pixelColors: [...Array(this.state.pixelColors.length)].map(
+      pixelColors: this.state.pixelColors.map(
         () => this.state.brush
       )
     });
