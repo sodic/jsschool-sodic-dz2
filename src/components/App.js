@@ -6,6 +6,11 @@ import BWPanel from './BWPanel';
 import withNavigation from './withNavigation';
 
 class App extends PureComponent {
+
+
+  renderWithProps = (Component, props) => () => (
+    <Component {...props} />
+  );
   render() {
     const props = {
       pictureColors: this.props.pictureColors,
@@ -13,11 +18,8 @@ class App extends PureComponent {
       resolution: this.props.resolution
     };
 
-    const renderWithProps = (Component, additionalProps) => () => (
-      <Component {...props} {...additionalProps} />
-    );
-
-    const NavigableRGBRender = renderWithProps(withNavigation(RGBPanel), {
+    const NavigableRGBRender = this.renderWithProps(withNavigation(RGBPanel), {
+      ...props,
       handlePixelClick: this.props.handlePixelClick,
       handlePalleteClick: this.props.handlePalleteClick,
       palleteColors: this.props.palleteColors,
@@ -25,7 +27,7 @@ class App extends PureComponent {
       brush: this.props.brush
     });
 
-    const NavigableBWRender = renderWithProps(withNavigation(BWPanel));
+    const NavigableBWRender = this.renderWithProps(withNavigation(BWPanel), props);
 
     return (
       <BrowserRouter>
