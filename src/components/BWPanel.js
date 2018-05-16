@@ -11,7 +11,6 @@ class BWPanel extends Component {
         pixelColors={this.props.pixelColors}
         rows={this.props.resolution}
         cols={this.props.resolution}
-        handleClick={() => {}}
         colorFilter={c => Color(c).grayscale()}
       />
     );
