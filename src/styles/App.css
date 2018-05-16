@@ -1,7 +1,7 @@
 body {
   text-align: center;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.2em;
 }
 
@@ -12,18 +12,6 @@ h1 {
 table {
   border-collapse: collapse;
   margin: auto;
-}
-
-.pallete {
-  margin: 1em auto;
-  border: 2px solid #302c2c;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.pixel {
-  float: left;
-  cursor: pointer;
 }
 
 nav {
@@ -38,7 +26,51 @@ nav a {
   margin: 5%;
 }
 
+.pallete {
+  margin: 1.2em auto;
+  border: 2px solid #302c2c;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.pixel {
+  float: left;
+  cursor: pointer;
+}
+
 .selected {
   color: darkred;
   border-color: darkred;
+}
+
+#clear,
+#sample {
+  font-size: 1.2em;
+  padding: 10px;
+  outline: none;
+  border: 2px solid #302c2c;
+  border-radius: 15px;
+}
+
+#toolbar {
+  margin-top: 2em;
+  min-width: 200px;
+  width: 29%;
+  margin: auto;
+}
+
+#clear {
+  float: right;
+  color: #302c2c;
+  background: none;
+}
+
+#clear:hover {
+  color: darkred;
+  cursor: pointer;
+  border-color: darkred;
+}
+
+#sample {
+  float: left;
 }

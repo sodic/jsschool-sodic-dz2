@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import Pallete from "./Pallete";
+import React, { Component } from 'react';
+import Pallete from './Pallete';
+import Toolbar from './Toolbar';
 
 class RGBPanel extends Component {
   render() {
@@ -20,6 +21,10 @@ class RGBPanel extends Component {
           rows={1}
           pixelColors={this.props.palleteColors}
           handleClick={this.props.handlePalleteClick}
+        />
+        <Toolbar
+          handleClearClick={this.props.handleClearClick}
+          brush={this.props.brush}
         />
       </div>
     );

@@ -20,7 +20,9 @@ class App extends Component {
     const NavigableRGBRender = renderWithProps(withNavigation(RGBPanel), {
       handlePixelClick: this.props.handlePixelClick,
       handlePalleteClick: this.props.handlePalleteClick,
-      palleteColors: this.props.palleteColors
+      palleteColors: this.props.palleteColors,
+      handleClearClick: this.props.handleClearClick,
+      brush: this.props.brush
     });
 
     const NavigableBWRender = renderWithProps(withNavigation(BWPanel));

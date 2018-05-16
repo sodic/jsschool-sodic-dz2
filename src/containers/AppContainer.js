@@ -29,10 +29,21 @@ class AppContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    window.onresize = () => {
+      this.setState({
+        pictureSize: this.adjustSize(
+          this.findOptimalSize(),
+          this.state.resolution
+        )
+      });
+    };
+  }
+
   findOptimalSize = () => Math.min(window.innerHeight, window.innerWidth);
 
   adjustSize = (size, resolution) =>
-    Math.round(0.65 * size / resolution) * resolution;
+    Math.round(0.6 * size / resolution) * resolution;
 
   paintPixel = index => {
     this.setState({
@@ -48,26 +59,25 @@ class AppContainer extends Component {
     });
   };
 
-  componentDidMount() {
-    window.onresize = () => {
-      this.setState({
-        pictureSize: this.adjustSize(
-          this.findOptimalSize(),
-          this.state.resolution
-        )
-      });
-    };
-  }
+  clearBoard = () => {
+    this.setState({
+      pixelColors: [...Array(this.state.pixelColors.length)].map(
+        () => this.state.brush
+      )
+    });
+  };
 
   render() {
     return (
       <App
         pixelColors={this.state.pixelColors}
-        handlePixelClick={this.paintPixel}
         palleteColors={this.state.palleteColors}
-        handlePalleteClick={this.chooseColor}
         pictureSize={this.state.pictureSize}
         resolution={this.state.resolution}
+        handlePixelClick={this.paintPixel}
+        handlePalleteClick={this.chooseColor}
+        handleClearClick={this.clearBoard}
+        brush={this.state.brush}
       />
     );
   }
