@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import '../styles/App.css';
 import RGBPanel from './RGBPanel';
 import BWPanel from './BWPanel';
 import withNavigation from './withNavigation';
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     const props = {
-      pixelColors: this.props.pixelColors,
+      pictureColors: this.props.pictureColors,
       pictureSize: this.props.pictureSize,
       resolution: this.props.resolution
     };

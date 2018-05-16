@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Pallete from './Pallete';
 import Toolbar from './Toolbar';
 
-class RGBPanel extends Component {
+class RGBPanel extends PureComponent {
   render() {
     return (
       <div>
         <Pallete
           height={this.props.pictureSize}
           width={this.props.pictureSize}
-          pixelColors={this.props.pixelColors}
+          pixelColors={this.props.pictureColors}
           rows={this.props.resolution}
           cols={this.props.resolution}
           handleClick={this.props.handlePixelClick}

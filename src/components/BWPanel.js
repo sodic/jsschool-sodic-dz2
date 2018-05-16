@@ -1,17 +1,20 @@
-import React, { Component } from "react";
-import Pallete from "./Pallete";
-import Color from "color";
+import React, { PureComponent } from 'react';
+import Pallete from './Pallete';
+import Color from 'color';
 
-class BWPanel extends Component {
+class BWPanel extends PureComponent {
+
+  colorFilter = color => Color(color).grayscale()
+
   render() {
     return (
       <Pallete
         height={this.props.pictureSize}
         width={this.props.pictureSize}
-        pixelColors={this.props.pixelColors}
+        pixelColors={this.props.pictureColors}
         rows={this.props.resolution}
         cols={this.props.resolution}
-        colorFilter={c => Color(c).grayscale()}
+        colorFilter={this.colorFilter}
       />
     );
   }

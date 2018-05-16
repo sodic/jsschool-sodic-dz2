@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Pixel extends Component {
+class Pixel extends PureComponent {
   constructor(props) {
     super();
     // console.log('?');

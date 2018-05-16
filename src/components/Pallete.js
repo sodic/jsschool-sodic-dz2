@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Pixel from './Pixel';
 
-class Pallete extends Component {
+class Board extends PureComponent {
   render() {
     const cellHeight = this.props.height / this.props.rows;
     const cellWidth = this.props.width / this.props.cols;
@@ -11,14 +11,12 @@ class Pallete extends Component {
       height: `${this.props.height}px`
     };
 
-    const cellNumber = this.props.rows * this.props.cols;
-
     return (
-      <div className="pallete" style={style}>
-        {[...Array(cellNumber)].map((e, i) => (
+      <div className="board" style={style}>
+        {this.props.pixelColors.map((color, i) => (
           <Pixel
             key={i}
-            color={this.props.pixelColors[i]}
+            color={color}
             index={i}
             height={cellHeight}
             width={cellWidth}
@@ -31,4 +29,4 @@ class Pallete extends Component {
   }
 }
 
-export default Pallete;
+export default Board;

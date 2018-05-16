@@ -1,31 +1,19 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import App from '../components/App';
 import * as util from '../utilities.js';
 
-class AppContainer extends Component {
+class AppContainer extends PureComponent {
   constructor() {
     super();
 
     const resolution = 10;
-    const pictureSize = this.adjustSize(this.findOptimalSize(), resolution);
-
-    const pixelColors = [];
-    const cellNumber = resolution * resolution;
-    for (let index = 0; index < cellNumber; index++) {
-      pixelColors[index] = util.randomColor();
-    }
-
-    const palleteColors = [];
-    for (let index = 0; index < resolution; index++) {
-      palleteColors[index] = util.randomColor();
-    }
-
+    
     this.state = {
       brush: util.randomColor(),
       resolution: resolution,
-      pictureSize: pictureSize,
-      pixelColors: [...pixelColors],
-      palleteColors: [...palleteColors]
+      pictureSize: this.adjustSize(this.findOptimalSize(), resolution),
+      pixelColors: [...Array(resolution * resolution)].map(util.randomColor),
+      palleteColors: [...Array(resolution)].map(util.randomColor),
     };
   }
 
@@ -70,7 +58,7 @@ class AppContainer extends Component {
   render() {
     return (
       <App
-        pixelColors={this.state.pixelColors}
+        pictureColors={this.state.pixelColors}
         palleteColors={this.state.palleteColors}
         pictureSize={this.state.pictureSize}
         resolution={this.state.resolution}
