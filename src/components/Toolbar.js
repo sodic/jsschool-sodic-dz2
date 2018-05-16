@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Toolbar extends Component {
   render() {
-    console.log(this.props.brush);
     return (
       <div id="toolbar">
         <span id="sample" style={{ background: this.props.brush }}>
