@@ -1,53 +1,38 @@
-import React, { Component } from "react";
-import App from "../components/App";
+import React, { Component } from 'react';
+import App from '../components/App';
+import * as util from '../utilities.js';
 
 class AppContainer extends Component {
-  DEFAULT_RESOLUTION = 10;
-  DEFAULT_PICTURE_SIZE = 600;
-  colors = [
-    "red",
-    "darkred",
-    "green",
-    "darkgreen",
-    "lightgreen",
-    "yellow",
-    "blue",
-    "brown",
-    "pink",
-    "orange"
-  ];
-
   constructor() {
     super();
 
-    function chooseRandomColor() {
-      let color = "rgb(";
-      for (let i = 0; i <= 2; i++) {
-        color += Math.floor(Math.random() * 256);
-        color += i === 2 ? ")" : ", ";
-      }
-      return color;
-    }
+    const resolution = 10;
+    const pictureSize = this.adjustSize(this.findOptimalSize(), resolution);
 
     const pixelColors = [];
-    const cellNumber = this.DEFAULT_RESOLUTION * this.DEFAULT_RESOLUTION;
+    const cellNumber = resolution * resolution;
     for (let index = 0; index < cellNumber; index++) {
-        pixelColors[index] = chooseRandomColor();
+      pixelColors[index] = util.randomColor();
     }
 
     const palleteColors = [];
-    for (let index = 0; index < this.DEFAULT_RESOLUTION; index++) {
-        palleteColors[index] = chooseRandomColor();
+    for (let index = 0; index < resolution; index++) {
+      palleteColors[index] = util.randomColor();
     }
 
     this.state = {
-      brush: "yellow",
-      resolution: this.DEFAULT_RESOLUTION,
-      pictureSize: this.DEFAULT_PICTURE_SIZE,
+      brush: util.randomColor(),
+      resolution: resolution,
+      pictureSize: pictureSize,
       pixelColors: [...pixelColors],
       palleteColors: [...palleteColors]
     };
   }
+
+  findOptimalSize = () => Math.min(window.innerHeight, window.innerWidth);
+
+  adjustSize = (size, resolution) =>
+    Math.round(0.65 * size / resolution) * resolution;
 
   paintPixel = index => {
     this.setState({
@@ -63,6 +48,17 @@ class AppContainer extends Component {
     });
   };
 
+  componentDidMount() {
+    window.onresize = () => {
+      this.setState({
+        pictureSize: this.adjustSize(
+          this.findOptimalSize(),
+          this.state.resolution
+        )
+      });
+    };
+  }
+
   render() {
     return (
       <App
@@ -70,8 +66,8 @@ class AppContainer extends Component {
         handlePixelClick={this.paintPixel}
         palleteColors={this.state.palleteColors}
         handlePalleteClick={this.chooseColor}
-        pictureSize={this.DEFAULT_PICTURE_SIZE}
-        resolution={this.DEFAULT_RESOLUTION}
+        pictureSize={this.state.pictureSize}
+        resolution={this.state.resolution}
       />
     );
   }

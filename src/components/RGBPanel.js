@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import Pallete from "./Pallete";
 
-class RGBPallete extends Component {
+class RGBPanel extends Component {
   render() {
     return (
       <div>
-        <h1>Ja sam RGB komponenta</h1>
         <Pallete
           height={this.props.pictureSize}
           width={this.props.pictureSize}
@@ -27,4 +26,4 @@ class RGBPallete extends Component {
   }
 }
 
-export default RGBPallete;
+export default RGBPanel;
